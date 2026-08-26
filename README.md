@@ -1,5 +1,11 @@
 # KV Cache Privacy Research
 
+> **Current priority (through Monday, August 31, 2026): literature and novelty review.**
+> Implementation is paused until the group has mapped the closest work, separated the
+> relevant threat models, and identified a defensible research gap. See
+> [`docs/LITERATURE_SURVEY_PLAN.md`](docs/LITERATURE_SURVEY_PLAN.md) and
+> [`docs/PRELIMINARY_NOVELTY_MAP.md`](docs/PRELIMINARY_NOVELTY_MAP.md).
+
 This repository studies how KV-cache quantization changes privacy leakage relative to language-model utility.
 
 The initial question is deliberately empirical:
