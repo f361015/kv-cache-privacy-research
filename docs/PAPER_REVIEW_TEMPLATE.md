@@ -1,63 +1,36 @@
-# Paper Review Record
+# Paper Review
 
 ## Citation
 
-- Title:
-- Authors:
-- Venue/status:
-- Year and version date:
-- Stable URL/DOI:
-- Reviewer:
-- Review confidence: abstract-only / skimmed / fully reviewed
+- Title, authors, venue/status, year:
+- Stable URL/DOI and version date:
+- Reviewer and confidence: abstract-only / skimmed / fully reviewed
 
-## Problem and contribution
+## Contribution
 
-- Problem:
-- Claimed contribution:
+- Problem and claimed contribution:
 - Cache object and lifecycle stage:
 - Closest baselines:
 
-## Method
+## Method and threat model
 
-- Optimized variables:
-- Objective and constraints:
-- Main assumptions:
-- K versus V treatment:
-- Layer/head/token/channel treatment:
-- Pre-RoPE or post-RoPE:
-- Online cache used by attention, or post-hoc artifact only:
-
-## Threat model
-
-- Protected property:
-- Attacker access:
-- Attacker knowledge:
-- Query/write/timing capabilities:
-- Naive or adaptive:
+- Optimized variables, objective, constraints, assumptions:
+- K/V and layer/head/token/channel treatment:
+- Pre-RoPE or post-RoPE; online or post-hoc:
+- Protected property and attacker access/knowledge:
+- Naive or adaptive attack:
 
 ## Evidence
 
-- Models and exact revisions:
-- Datasets and sample sizes:
-- Context lengths and bit widths:
-- Hardware:
-- Privacy metrics:
-- Utility metrics:
-- Efficiency metrics:
-- Main quantitative result with table/figure location:
-- Ablations and failure cases:
-
-## Reproducibility
-
-- Code/data available:
-- Configuration complete:
-- Result reproduced independently:
-- Concerns:
+- Models, datasets, sample sizes, context lengths, bit widths, hardware:
+- Privacy, utility, and efficiency metrics:
+- Main result with table/figure location:
+- Ablations, failure cases, and limitations:
+- Code/data availability and reproducibility concerns:
 
 ## Novelty relationship
 
 - Duplicate / adjacent / enabling / orthogonal:
-- Exact overlap with our candidate:
-- Exact difference from our candidate:
-- Author-stated limitations and future work:
-- Would this paper falsify our novelty hypothesis? Why or why not?
+- Exact overlap and difference:
+- Author-stated future work:
+- Could this invalidate our novelty hypothesis? Why?
