@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+
+# Models, caches, datasets, and experiment artifacts
+models/
+checkpoints/
+artifacts/
+outputs/
+results/raw/
+data/raw/
+data/processed/
+*.safetensors
+*.pt
+*.pth
+*.bin
+
+# Document QA intermediates
+tmp/
+rendered/

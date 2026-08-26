@@ -1,0 +1,39 @@
+project:
+  name: kv-cache-privacy-research
+  seed: 42
+
+model:
+  id: meta-llama/Llama-3.2-1B-Instruct
+  revision: TO_BE_PINNED
+  dtype: float16
+
+dataset:
+  manifest: data/manifests/pilot.jsonl
+  categories:
+    - public
+    - personal
+    - financial
+    - medical
+    - confidential
+
+cache:
+  schema_version: 1
+  capture: [key, value]
+  layers: all
+
+quantization:
+  precisions: [16, 8, 4]
+  family: symmetric
+  granularity: per_channel
+  clipping: none
+
+attacker:
+  knows_model_weights: true
+  knows_quantizer: true
+  knows_scales: true
+  knows_prompt: false
+  objectives: [token_reconstruction, semantic_reconstruction, attribute_inference]
+
+evaluation:
+  deterministic_generation: true
+  save_per_sample_results: true
