@@ -1,13 +1,13 @@
 # KV-Cache Privacy Research
 
-This repository is a minimal documentation skeleton for a possible research project at the
+This repository contains a minimal research skeleton and a controlled diagnostic pilot at the
 intersection of KV-cache compression and privacy.
 
 ## Current status
 
-No implementation or experiment is active. The current work is literature research: establish
-what has already been done, identify the closest papers, and decide whether a defensible research
-gap remains.
+A small GPT-2 pilot is active. It tests reconstruction from FP32, INT8, and INT4 cache entries under
+both a float-oriented matcher and a matcher that knows and emulates the quantizer. It is a mechanics
+check, not evidence of cross-model generality or a claim that quantization provides privacy.
 
 The working question is:
 
@@ -23,8 +23,18 @@ This is a research question, not a claim that quantization provides privacy.
 - [Literature research guide](docs/LITERATURE_RESEARCH_GUIDE.md) defines how to search and judge
   novelty.
 - [Paper review template](docs/PAPER_REVIEW_TEMPLATE.md) keeps reviews comparable.
+- [Quantized reconstruction pilot](docs/QUANTIZED_RECONSTRUCTION_PILOT.md) explains the current
+  experiment, threat model, and meaning of an attacker adapted to quantization.
 
-## If development resumes
+## Current pilot
+
+`experiments/quantized_collision_pilot.py` implements a deliberately small diagnostic based on
+KV-Cloak's first-layer collision idea. It compares FP32, INT8, and INT4 cache targets under both an
+unchanged float-space matcher and a matcher that re-encodes every candidate with the known
+quantizer. It also measures online cache-feedback utility. The initial GPT-2 run is a smoke test,
+not evidence that the result generalizes to current Llama-family models.
+
+## Before expanding development
 
 1. Finish the closest-work review and write a cautious novelty statement.
 2. Freeze one threat model; do not mix tensor reconstruction, timing leakage, cache integrity,

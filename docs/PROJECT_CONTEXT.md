@@ -61,6 +61,16 @@ The working gap is narrower than generic KV-cache quantization:
 The literature search has not yet established that this is novel. Use the wording "we have not yet
 located a direct study" until citation chaining and full-text review are complete.
 
+## Pilot status (2026-08-31)
+
+A controlled GPT-2 smoke test now implements the smallest version of this evaluation. It uses
+synthetic prompts, a full-vocabulary first-layer collision matcher, symmetric INT8/INT4 cache
+encoding, a quantizer-aware candidate re-encoding path, and online cache-feedback utility. The first
+ten-prompt run recovered every secret in every precision condition. This is evidence that the
+experiment mechanics work and that quantization was not protective in this particular setting; it is
+not evidence of general behavior on modern Llama-family models. See
+[the pilot document](QUANTIZED_RECONSTRUCTION_PILOT.md) for the exact scope and results.
+
 ## Claims to avoid
 
 - Quantization is a privacy defense because a naive attack performs worse.

@@ -1,0 +1,256 @@
+{
+  "status": "diagnostic_smoke_test",
+  "created_at": "2026-08-31T12:17:39.131056+00:00",
+  "scope": "Local GPT-2, built-in synthetic prompts, first-layer full-vocabulary nearest-neighbour collision diagnostic",
+  "not_claimed": [
+    "No claim that quantization provides privacy",
+    "No cross-model generalization",
+    "No system-level packed-memory or latency result",
+    "No claim that the adapted matcher is an optimal attacker"
+  ],
+  "upstream_reference": {
+    "repository": "https://github.com/SiO-2/kvcloak",
+    "local_commit": "6b40f36",
+    "relationship": "Ports the first-layer K/V collision distance into a controlled full-vocabulary diagnostic; does not run the upstream CLI unchanged."
+  },
+  "environment": {
+    "python": "3.11.15",
+    "torch": "2.11.0+cu126",
+    "transformers": "5.10.2",
+    "device": "cuda:0",
+    "gpu": "NVIDIA GeForce RTX 3060 Laptop GPU",
+    "model_source": "openai-community/gpt2",
+    "model_path_argument": "..\\models\\gpt2",
+    "model_type": "gpt2",
+    "model_parameters": 124439808
+  },
+  "configuration": {
+    "seed": 42,
+    "prompts": 10,
+    "tokens": 103,
+    "secret_tokens": 45,
+    "max_tokens_per_prompt": 16,
+    "candidate_batch_size": 2048,
+    "vocabulary_size": 50257,
+    "attacked_layer": 0,
+    "quantizer": "signed symmetric, per K/V token and attention head, scale from max absolute value",
+    "scale_storage_bits": 32,
+    "logical_bits_per_element": {
+      "fp32": 32.0,
+      "int8": 8.5,
+      "int4": 4.5
+    }
+  },
+  "projection_validation_max_abs_error": 3.814697265625e-06,
+  "prompts": [
+    {
+      "sample_id": 0,
+      "prompt": "The temporary identifier is Q7M4P9.",
+      "secret": "Q7M4P9",
+      "token_count": 11,
+      "secret_token_count": 6
+    },
+    {
+      "sample_id": 1,
+      "prompt": "The temporary identifier is R2K8V6.",
+      "secret": "R2K8V6",
+      "token_count": 11,
+      "secret_token_count": 6
+    },
+    {
+      "sample_id": 2,
+      "prompt": "The project codename is SILVER ORBIT.",
+      "secret": "SILVER ORBIT",
+      "token_count": 10,
+      "secret_token_count": 4
+    },
+    {
+      "sample_id": 3,
+      "prompt": "The project codename is AMBER COMET.",
+      "secret": "AMBER COMET",
+      "token_count": 10,
+      "secret_token_count": 4
+    },
+    {
+      "sample_id": 4,
+      "prompt": "The test reference number is 482917.",
+      "secret": "482917",
+      "token_count": 9,
+      "secret_token_count": 3
+    },
+    {
+      "sample_id": 5,
+      "prompt": "The test reference number is 731604.",
+      "secret": "731604",
+      "token_count": 9,
+      "secret_token_count": 3
+    },
+    {
+      "sample_id": 6,
+      "prompt": "The synthetic account label is BLUE HARBOR.",
+      "secret": "BLUE HARBOR",
+      "token_count": 11,
+      "secret_token_count": 5
+    },
+    {
+      "sample_id": 7,
+      "prompt": "The synthetic account label is QUIET CEDAR.",
+      "secret": "QUIET CEDAR",
+      "token_count": 12,
+      "secret_token_count": 6
+    },
+    {
+      "sample_id": 8,
+      "prompt": "The temporary access phrase is MAPLE GLASS.",
+      "secret": "MAPLE GLASS",
+      "token_count": 10,
+      "secret_token_count": 4
+    },
+    {
+      "sample_id": 9,
+      "prompt": "The temporary access phrase is COPPER RAIN.",
+      "secret": "COPPER RAIN",
+      "token_count": 10,
+      "secret_token_count": 4
+    }
+  ],
+  "reconstruction": {
+    "fp32": {
+      "all_tokens": {
+        "tokens": 103,
+        "top1_accuracy": 1.0,
+        "top5_accuracy": 1.0,
+        "mean_top1_distance": 0.005901329043022927,
+        "mean_top1_to_top2_margin": 15.423483339328211
+      },
+      "secret_tokens": {
+        "tokens": 45,
+        "top1_accuracy": 1.0,
+        "top5_accuracy": 1.0,
+        "mean_top1_distance": 0.007704495152251588,
+        "mean_top1_to_top2_margin": 18.997112803988987
+      },
+      "sequences": {
+        "prompts": 10,
+        "exact_prompt_top1_rate": 1.0,
+        "exact_secret_top1_rate": 1.0,
+        "exact_secret_within_top5_rate": 1.0
+      }
+    },
+    "int4_adapted": {
+      "all_tokens": {
+        "tokens": 103,
+        "top1_accuracy": 1.0,
+        "top5_accuracy": 1.0,
+        "mean_top1_distance": 0.01019525305973818,
+        "mean_top1_to_top2_margin": 16.553606385166205
+      },
+      "secret_tokens": {
+        "tokens": 45,
+        "top1_accuracy": 1.0,
+        "top5_accuracy": 1.0,
+        "mean_top1_distance": 0.016804419613132875,
+        "mean_top1_to_top2_margin": 20.00517658657498
+      },
+      "sequences": {
+        "prompts": 10,
+        "exact_prompt_top1_rate": 1.0,
+        "exact_secret_top1_rate": 1.0,
+        "exact_secret_within_top5_rate": 1.0
+      }
+    },
+    "int4_naive": {
+      "all_tokens": {
+        "tokens": 103,
+        "top1_accuracy": 1.0,
+        "top5_accuracy": 1.0,
+        "mean_top1_distance": 4.1488506909713,
+        "mean_top1_to_top2_margin": 11.8773812414373
+      },
+      "secret_tokens": {
+        "tokens": 45,
+        "top1_accuracy": 1.0,
+        "top5_accuracy": 1.0,
+        "mean_top1_distance": 4.298533301883274,
+        "mean_top1_to_top2_margin": 15.220244047376845
+      },
+      "sequences": {
+        "prompts": 10,
+        "exact_prompt_top1_rate": 1.0,
+        "exact_secret_top1_rate": 1.0,
+        "exact_secret_within_top5_rate": 1.0
+      }
+    },
+    "int8_adapted": {
+      "all_tokens": {
+        "tokens": 103,
+        "top1_accuracy": 1.0,
+        "top5_accuracy": 1.0,
+        "mean_top1_distance": 0.007776332300301027,
+        "mean_top1_to_top2_margin": 15.423180570880186
+      },
+      "secret_tokens": {
+        "tokens": 45,
+        "top1_accuracy": 1.0,
+        "top5_accuracy": 1.0,
+        "mean_top1_distance": 0.005442905601941877,
+        "mean_top1_to_top2_margin": 18.999181726243762
+      },
+      "sequences": {
+        "prompts": 10,
+        "exact_prompt_top1_rate": 1.0,
+        "exact_secret_top1_rate": 1.0,
+        "exact_secret_within_top5_rate": 1.0
+      }
+    },
+    "int8_naive": {
+      "all_tokens": {
+        "tokens": 103,
+        "top1_accuracy": 1.0,
+        "top5_accuracy": 1.0,
+        "mean_top1_distance": 0.22940856377476626,
+        "mean_top1_to_top2_margin": 15.199850045361565
+      },
+      "secret_tokens": {
+        "tokens": 45,
+        "top1_accuracy": 1.0,
+        "top5_accuracy": 1.0,
+        "mean_top1_distance": 0.2373140772183736,
+        "mean_top1_to_top2_margin": 18.76575126647949
+      },
+      "sequences": {
+        "prompts": 10,
+        "exact_prompt_top1_rate": 1.0,
+        "exact_secret_top1_rate": 1.0,
+        "exact_secret_within_top5_rate": 1.0
+      }
+    }
+  },
+  "online_utility": {
+    "fp32": {
+      "evaluated_tokens": 93,
+      "mean_nll": 6.0601014168031755,
+      "perplexity": 428.41888352972603,
+      "next_token_accuracy": 0.20430107526881722,
+      "argmax_agreement_with_fp32": 1.0,
+      "mean_kl_from_fp32": 0.0
+    },
+    "int8": {
+      "evaluated_tokens": 93,
+      "mean_nll": 6.055549867691532,
+      "perplexity": 426.47334490702417,
+      "next_token_accuracy": 0.20430107526881722,
+      "argmax_agreement_with_fp32": 1.0,
+      "mean_kl_from_fp32": 5.2256398566407704e-05
+    },
+    "int4": {
+      "evaluated_tokens": 93,
+      "mean_nll": 6.046582293766801,
+      "perplexity": 422.6660104508606,
+      "next_token_accuracy": 0.21505376344086022,
+      "argmax_agreement_with_fp32": 0.8709677419354839,
+      "mean_kl_from_fp32": 0.019126975328050633
+    }
+  },
+  "elapsed_seconds": 8.225136299966834
+}

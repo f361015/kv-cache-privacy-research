@@ -9,3 +9,10 @@ outputs/
 *.safetensors
 *.pt
 *.pth
+
+# Large/local experiment dependencies live outside this repository.
+models/
+kvcloak-upstream/
+
+# Per-token outputs can be regenerated from the documented command.
+experiments/results/*.csv
