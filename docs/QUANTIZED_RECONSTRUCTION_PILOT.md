@@ -8,8 +8,10 @@ This pilot asks one narrow question:
 > after the attacker accounts for the known quantization process?
 
 It is a diagnostic, not a claim that quantization is a privacy defense. The first run uses GPT-2 so
-that the mechanics can be tested on the available 6 GB GPU. A later Llama-family replication is
-required before discussing generality.
+that the mechanics can be tested on the available 6 GB GPU. A Llama-family follow-up using the real
+Transformers cache is now recorded in
+[LLAMA_TRANSFORMERS_QUANTIZED_CACHE.md](LLAMA_TRANSFORMERS_QUANTIZED_CACHE.md); this document remains
+the record of the earlier hand-written-quantizer smoke test.
 
 ## Authorized and ethical scope
 

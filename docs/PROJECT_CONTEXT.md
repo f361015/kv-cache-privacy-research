@@ -61,15 +61,17 @@ The working gap is narrower than generic KV-cache quantization:
 The literature search has not yet established that this is novel. Use the wording "we have not yet
 located a direct study" until citation chaining and full-text review are complete.
 
-## Pilot status (2026-08-31)
+## Experiment status (2026-09-01)
 
-A controlled GPT-2 smoke test now implements the smallest version of this evaluation. It uses
-synthetic prompts, a full-vocabulary first-layer collision matcher, symmetric INT8/INT4 cache
-encoding, a quantizer-aware candidate re-encoding path, and online cache-feedback utility. The first
-ten-prompt run recovered every secret in every precision condition. This is evidence that the
-experiment mechanics work and that quantization was not protective in this particular setting; it is
-not evidence of general behavior on modern Llama-family models. See
-[the pilot document](QUANTIZED_RECONSTRUCTION_PILOT.md) for the exact scope and results.
+The GPT-2 smoke test has been followed by a controlled Llama-3.2-1B run using Transformers 5.10.2's
+real HQQ-backed `QuantizedCache`. The experiment used six synthetic prompts, 66 tokens, 24
+secret-overlapping tokens, and a full 128,256-token vocabulary search at layer 0. BF16, INT8 naive,
+INT8 adapted, INT4 naive, and INT4 adapted matching all achieved 100% secret-token top-1 recovery
+and 6/6 exact synthetic secrets. INT4 reduced the measured prefill cache tensor payload from 16 to
+4.5 bits per represented element but changed 11.7% of BF16 continuation argmax decisions. See
+[the Llama experiment document](LLAMA_TRANSFORMERS_QUANTIZED_CACHE.md) for the precise threat model,
+cache semantics, metrics, and limitations. This result is evidence about one controlled cell only;
+it is not evidence that every KV quantizer or reconstruction attack behaves the same way.
 
 ## Claims to avoid
 
@@ -82,8 +84,8 @@ not evidence of general behavior on modern Llama-family models. See
 
 ## Sensible first experiment if the project resumes
 
-Use one pinned model and one synthetic prompt set. Compare FP16 with uniform INT8 and INT4 under
-the same prompts and seeds. Run both an FP16-oriented attack and an attacker that knows the
+Use one pinned model and one synthetic prompt set. Compare BF16 with uniform INT8 and INT4 under
+the same prompts and seeds. Run both a BF16-oriented attack and an attacker that knows the
 quantizer, grouping, clipping, scales, and zero points. Separately run online inference in which
 attention consumes the compressed cache. Report per-sample leakage, utility, bitrate, and failure
 cases before proposing a new optimizer.

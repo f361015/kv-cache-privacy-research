@@ -1,13 +1,14 @@
 # KV-Cache Privacy Research
 
-This repository contains a minimal research skeleton and a controlled diagnostic pilot at the
-intersection of KV-cache compression and privacy.
+This repository contains a minimal research skeleton and controlled diagnostics at the intersection
+of KV-cache compression and privacy.
 
 ## Current status
 
-A small GPT-2 pilot is active. It tests reconstruction from FP32, INT8, and INT4 cache entries under
-both a float-oriented matcher and a matcher that knows and emulates the quantizer. It is a mechanics
-check, not evidence of cross-model generality or a claim that quantization provides privacy.
+A Llama-3.2-1B experiment now uses the real HQQ-backed
+`transformers.cache_utils.QuantizedCache`. It compares a BF16 `DynamicCache` with packed INT8 and
+INT4 targets under both a float-oriented matcher and a matcher that knows and emulates the
+quantizer. The earlier GPT-2 implementation remains a mechanics smoke test.
 
 The working question is:
 
@@ -23,16 +24,19 @@ This is a research question, not a claim that quantization provides privacy.
 - [Literature research guide](docs/LITERATURE_RESEARCH_GUIDE.md) defines how to search and judge
   novelty.
 - [Paper review template](docs/PAPER_REVIEW_TEMPLATE.md) keeps reviews comparable.
-- [Quantized reconstruction pilot](docs/QUANTIZED_RECONSTRUCTION_PILOT.md) explains the current
-  experiment, threat model, and meaning of an attacker adapted to quantization.
+- [Quantized reconstruction pilot](docs/QUANTIZED_RECONSTRUCTION_PILOT.md) explains the GPT-2
+  smoke test and the meaning of an attacker adapted to quantization.
+- [Llama Transformers QuantizedCache experiment](docs/LLAMA_TRANSFORMERS_QUANTIZED_CACHE.md)
+  records the exact checkpoint, real cache behavior, attack/utility metrics, and current result.
 
-## Current pilot
+## Current experiment
 
-`experiments/quantized_collision_pilot.py` implements a deliberately small diagnostic based on
-KV-Cloak's first-layer collision idea. It compares FP32, INT8, and INT4 cache targets under both an
-unchanged float-space matcher and a matcher that re-encodes every candidate with the known
-quantizer. It also measures online cache-feedback utility. The initial GPT-2 run is a smoke test,
-not evidence that the result generalizes to current Llama-family models.
+`experiments/transformers_quantized_cache_experiment.py` implements a deliberately small diagnostic
+based on KV-Cloak's first-layer Collision signal. It scans the complete Llama vocabulary, uses
+actual packed `QuantizedCache` targets, and makes online attention read the compressed cache for
+continuation and MMLU-format utility checks. The completed six-prompt run recovered every synthetic
+secret in BF16, INT8, and INT4. This is a scoped result, not a claim that it generalizes to other
+models, attacks, prompts, or production quantizers.
 
 ## Before expanding development
 
