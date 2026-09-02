@@ -1,4 +1,4 @@
-# Quantized KV Reconstruction Pilot
+# Quantized KV Reconstruction Pilot GPT-2
 
 ## Purpose
 
