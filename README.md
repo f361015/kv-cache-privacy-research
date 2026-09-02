@@ -21,9 +21,6 @@ This is a research question, not a claim that quantization provides privacy.
 
 - [Project context](docs/PROJECT_CONTEXT.md) records the idea, boundaries, closest-work risks,
   and decisions that should not be lost.
-- [Literature research guide](docs/LITERATURE_RESEARCH_GUIDE.md) defines how to search and judge
-  novelty.
-- [Paper review template](docs/PAPER_REVIEW_TEMPLATE.md) keeps reviews comparable.
 - [Quantized reconstruction pilot](docs/QUANTIZED_RECONSTRUCTION_PILOT.md) explains the GPT-2
   smoke test and the meaning of an attacker adapted to quantization.
 - [Llama Transformers QuantizedCache experiment](docs/LLAMA_TRANSFORMERS_QUANTIZED_CACHE.md)
